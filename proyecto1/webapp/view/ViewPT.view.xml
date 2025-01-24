@@ -1,0 +1,12 @@
+<mvc:View
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    controllerName="logaligroup.proyecto1.controller.ViewPT">
+    <Page id="idPTPage" title="Productos Terminados No importados en stock">
+        <content>
+            <HBox justifyContent="Center" alignItems="Center" class="sapUiSmallMargin">
+                <Button text="Regresar a Main" press="onPressBackToMain" />
+            </HBox>
+        </content>
+    </Page>
+</mvc:View>

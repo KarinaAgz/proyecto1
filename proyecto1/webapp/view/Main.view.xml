@@ -1,0 +1,34 @@
+<mvc:View
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    controllerName="logaligroup.proyecto1.controller.Main">
+    <App id="idMainApp">
+        <Page id="pag" title="{i18n>appTitle}">
+            <Panel 
+                headerText="Layouts" 
+                width="auto" 
+                class="sapUiResponsiveMargin"
+                expandable="true" 
+                expanded="true">
+            
+			
+				<ToolbarSpacer/>
+                <content>
+                    <HBox id="layouts" class="sapUiSmallMargin" justifyContent="SpaceBetween" alignItems="Center">
+                        <Button text="DB Stock MP" press="onPressViewList"  width="200px"  />
+                        <Button text="DB facturaciones" press="onPressViewFacturaciones"  width="200px"  />
+                        <Button text="DB productos terminados de materia prima no importados y stock" press="onPressViewPT"  width="200px"/>
+                    </HBox>
+                
+                </content>
+               
+            </Panel>
+            <footer>
+            <OverflowToolbar >
+                <core:Fragment fragmentName="logaligroup.proyecto1.view.fragments.ButtonTheme" type="XML" />
+            </OverflowToolbar>
+            </footer>
+        </Page>
+    </App>
+</mvc:View>

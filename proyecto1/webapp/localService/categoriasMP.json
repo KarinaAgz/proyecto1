@@ -1,0 +1,8 @@
+{
+    "categoriasMP": [
+      { "id": "1", "name": "Categoría tecnologia" },
+      { "id": "2", "name": "Categoría electricidad" },
+      { "id": "3", "name": "Categoría almacenamiento" }
+    ]
+  }
+  

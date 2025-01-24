@@ -1,0 +1,12 @@
+<mvc:View
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    controllerName="logaligroup.proyecto1.controller.ViewFacturaciones">
+    <Page id="idFacturacionesPage" title="Facturaciones">
+        <content>
+            <HBox justifyContent="Center" alignItems="Center" class="sapUiSmallMargin">
+                <Button text="Regresar a Main" press="onPressBackToMain" />
+            </HBox>
+        </content>
+    </Page>
+</mvc:View>
