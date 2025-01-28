@@ -11,13 +11,13 @@
 
                  <HBox justifyContent="SpaceBetween" alignItems="Center" class="sapUiSmallMargin">
                         <DatePicker
-                        id="idFecha"
-                        displayFormat="DD/MM/YYYY"
-                        valueFormat="DD/MM/YYYY"
-                        placeholder="Selecciona una fecha"
-                        width="300px"
-                        change=".onFilterTable"
-                    />
+                            id="idFecha"
+                            placeholder="Selecciona una fecha de producción DD/MM/YYYY"
+                            displayFormat="dd/MM/yyyy"
+                            valueFormat="dd/MM/yyyy"
+                            width="400px"
+                            change=".onFilterTable"
+                        />
                  </HBox>
 
             </HeaderContainer>
