@@ -45,6 +45,7 @@ sap.ui.define([
             } else {
                 console.error("El modelo JSON no está configurado.");
             }
-        }
+        },
+        
     });
 });

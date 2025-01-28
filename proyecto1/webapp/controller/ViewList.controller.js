@@ -96,7 +96,13 @@ sap.ui.define([
             }
 
             oBinding.filter([oFilter]);
+        },
+
+        onPressBackToMain: function () {
+            var oRouter = this.getOwnerComponent().getRouter();
+            oRouter.navTo("main");
         }
+        
 
     });
 

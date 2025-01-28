@@ -24,11 +24,6 @@
                 </content>
                
             </Panel>
-            <footer>
-            <OverflowToolbar >
-                <core:Fragment fragmentName="logaligroup.proyecto1.view.fragments.ButtonTheme" type="XML" />
-            </OverflowToolbar>
-            </footer>
         </Page>
     </App>
 </mvc:View>

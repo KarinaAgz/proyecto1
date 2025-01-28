@@ -6,25 +6,31 @@
 >
     <Page title="layoutMP">
         <content>
+
+        <HeaderContainer >
+                <HBox justifyContent="SpaceBetween" alignItems="Center" class="sapUiSmallMargin">
+                <Button  press="onPressBackToMain" icon="sap-icon://nav-back"  /> 
+                     
+                 </HBox>
             <!-- Filtro por NoParte -->
-            <HBox justifyContent="SpaceBetween">
+            <HBox justifyContent="SpaceBetween" alignItems="Center" class="sapUiSmallMargin">
                 <items>
                     <SearchField
                         id="searchNoParte"
-                        width="200px"
+                        width="300px"
                         placeholder="Buscar por NoParte"
                         liveChange="onSearchNoParte"
                     />
                     <SearchField
                         id="searchDescripcion"
-                        width="200px"
+                        width="300px"
                         placeholder="Buscar por Descripción"
                         liveChange="onSearchDescripcion"
                     />
 
                      <Select
                         id="selectCategoria"
-                        width="200px"
+                        width="300px"
                         
                         change="onCategoryChange"
                         items="{categoriesModel>/categoriasMP}"
@@ -35,10 +41,8 @@
                     </Select>
                 </items>
             </HBox>
-
-           
-                
-
+    </HeaderContainer >
+    <ToolbarSeparator />
 
             <!-- Scroll container para habilitar desplazamiento horizontal -->
             <ScrollContainer
@@ -128,5 +132,6 @@
                 </Table>
             </ScrollContainer>
         </content>
+
     </Page>
 </mvc:View>

@@ -1,41 +1,32 @@
 sap.ui.define([
     "sap/ui/core/mvc/Controller",
-    "sap/ui/core/CustomData"
-], function (Controller) {
+    "sap/m/MessageToast"
+], function (Controller, MessageToast) {
     "use strict";
 
     return Controller.extend("logaligroup.proyecto1.controller.ButtonTheme", {
-
-        onInit: function () {
-            this._initTheme();
-        },
-
-        _initTheme: function () {
-            // Recupera el tema guardado en localStorage
-            var sSavedTheme = localStorage.getItem("tipoTema");
-            if (sSavedTheme) {
-                console.log("Aplicando tema guardado:", sSavedTheme);
-                sap.ui.getCore().applyTheme(sSavedTheme);
-            } else {
-                console.log("Aplicando tema por defecto (sap_horizon).");
-                sap.ui.getCore().applyTheme("sap_horizon");
-            }
-        },
-
+        /**
+         * Cambia el tema de la aplicación cuando se presiona un botón.
+         * @param {sap.ui.base.Event} oEvent Evento del botón.
+         */
         onTheme: function (oEvent) {
-            // Obtén el valor del tema desde los datos personalizados del botón
-            var oCustomData = oEvent.getSource().getCustomData();
-            if (oCustomData.length > 0) {
-                var sTheme = oCustomData[0].getValue();
-                console.log("Cambiando tema a:", sTheme);
+            // Obtener el botón presionado
+            var oButton = oEvent.getSource();
 
-                // Aplica el tema seleccionado
+            // Obtener el CustomData del botón
+            var oCustomData = oButton.getCustomData().find(function (data) {
+                return data.getKey() === "theme";
+            });
+
+            if (oCustomData) {
+                // Aplicar el tema
+                var sTheme = oCustomData.getValue();
                 sap.ui.getCore().applyTheme(sTheme);
 
-                // Guarda el tema en localStorage
-                localStorage.setItem("tipoTema", sTheme);
+                // Mostrar mensaje de confirmación
+                MessageToast.show("Tema cambiado a: " + sTheme);
             } else {
-                console.error("No se encontró tema en el botón.");
+                MessageToast.show("No se pudo obtener el tema del botón.");
             }
         }
     });

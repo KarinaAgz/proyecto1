@@ -1,12 +1,148 @@
-<mvc:View
+<mvc:View xmlns:table="sap.ui.table"
     xmlns:mvc="sap.ui.core.mvc"
     xmlns="sap.m"
     controllerName="logaligroup.proyecto1.controller.ViewPT">
     <Page id="idPTPage" title="Productos Terminados No importados en stock">
         <content>
-            <HBox justifyContent="Center" alignItems="Center" class="sapUiSmallMargin">
-                <Button text="Regresar a Main" press="onPressBackToMain" />
-            </HBox>
+            <HeaderContainer >
+                <HBox justifyContent="spacebetween" alignItems="Center" class="sapUiSmallMargin">
+                <Button  press="onPressBackToMain" icon="sap-icon://nav-back"  />   
+                 </HBox>
+
+                 <HBox justifyContent="spacebetween" alignItems="Center" class="sapUiSmallMargin">
+                    <SearchField id="searchFechaFabricacion" width="300px"  placeholder="Buscar por Fecha Fabricación" liveChange="onSearchFabricacion"></SearchField>
+
+                 </HBox>
+
+
+            </HeaderContainer>
+            <ToolbarSeparator />
+            
+
+            <ScrollContainer  horizontal="true" vertical="false" width="auto">
+                <Table id="idTablePT"  growing="true" items="{layoutPT>/productos_terminados}" growingScrollToLoad="true" width="auto">
+                    <columns>
+                        <Column  width="150px">
+                            <Text text="NoParte"></Text>
+                        </Column>
+
+                        <Column  width="150px">
+                            <Text text="NSDM_DDL_MSEG"></Text>
+                        </Column>
+
+                        <Column  width="150px">
+                            <Text text="Descripcion"></Text>
+                        </Column>
+
+                        <Column  width="150px">
+                            <Text text="DescripcionEnIngles"></Text>
+                        </Column>
+
+                        <Column  width="150px">
+                            <Text text="Categoria1"></Text>
+                        </Column>
+
+                        <Column  width="150px">
+                            <Text text="FraccionArancelaria"></Text>
+                        </Column>
+
+
+                        <Column  width="150px">
+                            <Text text="FADesperdicio"></Text>
+                        </Column>
+
+                        <Column  width="150px">
+                            <Text text="UMComercial"></Text>
+                        </Column>
+
+                         <Column  width="150px">
+                            <Text text="UMTarifa"></Text>
+                        </Column>
+
+                        <Column  width="150px">
+                            <Text text="PaisDestino"></Text>
+                        </Column>
+
+                         <Column  width="150px">
+                            <Text text="CostoUnitario"></Text>
+                        </Column>
+
+                        <Column  width="150px">
+                            <Text text="PesoEnKgs"></Text>
+                        </Column>
+
+                        <Column  width="150px">
+                            <Text text="Referencia"></Text>
+                        </Column>
+
+                        <Column  width="150px">
+                            <Text text="Observaciones"></Text>
+                        </Column>
+
+                        <Column  width="150px">
+                            <Text text="FechaEstructura"></Text>
+                        </Column>
+
+                        <Column  width="190px">
+                            <Text text="NoParteDelComponente"></Text>
+                        </Column>
+
+                        <Column  width="190px">
+                            <Text text="UnidadComponente"></Text>
+                        </Column>
+
+                        <Column  width="150px">
+                            <Text text="CantidadIncorporada"></Text>
+                        </Column>
+
+                        <Column  width="150px">
+                            <Text text="CantMerma"></Text>
+                        </Column>
+
+                        <Column  width="150px">
+                            <Text text="CantDesperdicio"></Text>
+                        </Column>
+
+                        <Column  width="150px">
+                            <Text text="FDesde"></Text>
+                        </Column>
+
+                        <Column  width="150px">
+                            <Text text="FHasta"></Text>
+                        </Column>
+                        
+                    </columns>
+
+                    <items>
+                        <ColumnListItem >
+                            <cells>
+                                <Text  text="{layoutPT>NoParte}"/>
+                                <Text  text="{layoutPT>NSDM_DDL_MSEG}"/>
+                                <Text  text="{layoutPT>Descripcion}"/>
+                                <Text  text="{layoutPT>DescripcionEnIngles}"/>
+                                <Text  text="{layoutPT>FraccionArancelaria}"/>
+                                <Text  text="{layoutPT>FADesperdicio}"/>
+                                <Text  text="{layoutPT>UMComercial}"/>
+                                <Text  text="{layoutPT>UMTarifa}"/>
+                                <Text  text="{layoutPT>PaisDestino}"/>
+                                <Text  text="{layoutPT>CostoUnitario}"/>
+                                <Text  text="{layoutPT>PesoEnKgs}"/>
+                                <Text  text="{layoutPT>Referencia}"/>
+                                <Text  text="{layoutPT>Observaciones}"/>
+                                <Text  text="{layoutPT>FechaEstructura}"/>
+                                <Text  text="{layoutPT>NoParteDelComponente}"/>
+                                <Text  text="{layoutPT>UnidadComponente}"/>
+                                <Text  text="{layoutPT>CantidadIncorporada}"/>
+                                <Text  text="{layoutPT>CantMerma}"/>
+                                <Text  text="{layoutPT>CantDesperdicio}"/>
+                                <Text  text="{layoutPT>FDesde}"/>
+                                <Text  text="{layoutPT>FHasta}"/>
+
+                            </cells>
+                        </ColumnListItem>
+                    </items>
+                </Table>
+            </ScrollContainer>
         </content>
     </Page>
 </mvc:View>
