@@ -6,10 +6,9 @@
 >
     <Shell>
         <App id="idMainApp">
-            <Page
-                id="pag"
-                title="{i18n>appTitle}"
-            >
+            <Page id="pag" title="{i18n>appTitle}">
+                
+                <!-- Panel de Layouts -->
                 <Panel
                     headerText="Layouts"
                     width="auto"
@@ -17,7 +16,6 @@
                     expandable="true"
                     expanded="true"
                 >
-                    <ToolbarSpacer />
                     <content>
                         <HBox
                             id="layouts"
@@ -31,23 +29,122 @@
                                 width="200px"
                             />
                             <Button
-                                text="DB facturaciones"
+                                text="DB Facturaciones"
                                 press="onPressViewFacturaciones"
                                 width="200px"
                             />
                             <Button
-                                text="DB productos terminados de materia prima no importados y stock"
+                                text="DB Productos Terminados"
                                 press="onPressViewPT"
                                 width="200px"
                             />
                         </HBox>
                     </content>
                 </Panel>
+
+                <!-- Filtros -->
+                <Panel headerText="Filtros de Reporte" width="auto" class="sapUiResponsiveMargin" expandable="true" expanded="true">
+                    <content>
+                        <HBox class="sapUiSmallMargin" justifyContent="SpaceAround">
+                            <!-- Filtro Fecha -->
+                            <VBox>
+                                <Text text="Fecha" />
+                                <DateRangeSelection
+                                    id="dateRange"
+                                    placeholder="Selecciona un rango de fechas"
+                                />
+                            </VBox>
+
+                            <!-- Filtro Factura -->
+                            <VBox>
+                                <Text text="Factura" />
+                                <Select id="selectFactura">
+                                    <!-- Opciones dinámicas se llenarán aquí -->
+                                    <items>
+                                        <core:Item key="{facturas>FACTURA}" text="{facturas>FACTURA}" />
+                                    </items>
+                                </Select>
+                            </VBox>
+
+                            <!-- Filtro Material -->
+                            <VBox>
+                                <Text text="Material" />
+                                <Select id="selectMaterial">
+                                    <!-- Opciones dinámicas se llenarán aquí -->
+                                </Select>
+                            </VBox>
+
+                            <!-- Filtro Órdenes de Compra -->
+                            <VBox>
+                                <Text text="Orden de Compra" />
+                                <Select id="selectOrdenCompra">
+                                    <!-- Opciones dinámicas se llenarán aquí -->
+                                </Select>
+                            </VBox>
+
+                            <!-- Filtro Cliente -->
+                            <VBox>
+                                <Text text="Cliente" />
+                                <Select id="selectCliente">
+                                    <!-- Opciones dinámicas se llenarán aquí -->
+                                </Select>
+                            </VBox>
+
+                            <!-- Filtro Proveedor -->
+                            <VBox>
+                                <Text text="Proveedor" />
+                                <Select id="selectProveedor">
+                                    <!-- Opciones dinámicas se llenarán aquí -->
+                                </Select>
+                            </VBox>
+
+                            <!-- Botón para aplicar filtros -->
+                            <Button text="Aplicar filtros" press="onApplyFilters" />
+                        </HBox>
+                    </content>
+                </Panel>
+
+                <!-- Tabla para mostrar los datos -->
+                <Panel>
+                    <Table items="{/facturas}">
+                        <columns>
+                            <Column>
+                                <Text text="Factura" />
+                            </Column>
+                            <Column>
+                                <Text text="Fecha" />
+                            </Column>
+                            <Column>
+                                <Text text="Orden de Compra" />
+                            </Column>
+                            <Column>
+                                <Text text="Cliente" />
+                            </Column>
+                            <Column>
+                                <Text text="Proveedor" />
+                            </Column>
+                        </columns>
+
+                        <items>
+                            <ColumnListItem>
+                                <cells>
+                                    <Text text="{FACTURA}" />
+                                    <Text text="{FECHA}" />
+                                    <Text text="{ORDEN_COMPRA}" />
+                                    <Text text="{CLIENTE}" />
+                                    <Text text="{PROVEEDOR}" />
+                                </cells>
+                            </ColumnListItem>
+                        </items>
+                    </Table>
+                </Panel>
+                
+                <!-- Imagen -->
                 <Image
                     src="images/image.png"
                     width="100%"
                     height="100%"
-                    alt="Mi Imagen "
+                    alt="Mi Imagen"
                 />
             </Page>
         </App>
