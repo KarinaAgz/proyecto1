@@ -5,15 +5,20 @@
     <Page id="idPTPage" title="Productos Terminados No importados en stock">
         <content>
             <HeaderContainer >
-                <HBox justifyContent="spacebetween" alignItems="Center" class="sapUiSmallMargin">
+                <HBox justifyContent="SpaceBetween" alignItems="Center" class="sapUiSmallMargin">
                 <Button  press="onPressBackToMain" icon="sap-icon://nav-back"  />   
                  </HBox>
 
-                 <HBox justifyContent="spacebetween" alignItems="Center" class="sapUiSmallMargin">
-                    <SearchField id="searchFechaFabricacion" width="300px"  placeholder="Buscar por Fecha Fabricación" liveChange="onSearchFabricacion"></SearchField>
-
+                 <HBox justifyContent="SpaceBetween" alignItems="Center" class="sapUiSmallMargin">
+                        <DatePicker
+                        id="idFecha"
+                        displayFormat="DD/MM/YYYY"
+                        valueFormat="DD/MM/YYYY"
+                        placeholder="Selecciona una fecha"
+                        width="300px"
+                        change=".onFilterTable"
+                    />
                  </HBox>
-
 
             </HeaderContainer>
             <ToolbarSeparator />
@@ -120,6 +125,7 @@
                                 <Text  text="{layoutPT>NSDM_DDL_MSEG}"/>
                                 <Text  text="{layoutPT>Descripcion}"/>
                                 <Text  text="{layoutPT>DescripcionEnIngles}"/>
+                                <Text  text="{layoutPT>Categoria1}"/>
                                 <Text  text="{layoutPT>FraccionArancelaria}"/>
                                 <Text  text="{layoutPT>FADesperdicio}"/>
                                 <Text  text="{layoutPT>UMComercial}"/>
