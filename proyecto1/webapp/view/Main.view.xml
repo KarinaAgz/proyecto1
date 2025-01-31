@@ -2,151 +2,584 @@
     xmlns:mvc="sap.ui.core.mvc"
     xmlns="sap.m"
     xmlns:core="sap.ui.core"
+    xmlns:table="sap.ui.table"
+    xmlns:f="sap.f"
+    xmlns:fb="sap.ui.comp.filterbar"
     controllerName="logaligroup.proyecto1.controller.Main"
 >
-    <Shell>
-        <App id="idMainApp">
-            <Page id="pag" title="{i18n>appTitle}">
-                
-                <!-- Panel de Layouts -->
-                <Panel
-                    headerText="Layouts"
-                    width="auto"
-                    class="sapUiResponsiveMargin"
-                    expandable="true"
-                    expanded="true"
-                >
-                    <content>
-                        <HBox
-                            id="layouts"
-                            class="sapUiSmallMargin"
-                            justifyContent="SpaceBetween"
-                            alignItems="Center"
+    <f:DynamicPage
+        id="MainView_DynamicPage"
+        backgroundDesign="Transparent"
+        fitContent="true"
+    >
+        <f:header>
+            <f:DynamicPageHeader
+                id="MainView_DynamicPageHeader"
+                backgroundDesign="Transparent"
+            >
+                <f:content>
+                    <fb:FilterBar
+                        id="filterbar"
+                        search="onSearchFilters"
+                        useToolbar="true"
+                    >
+                        <fb:filterGroupItems>
+                            <fb:FilterGroupItem
+                                id="Filter_Dates"
+                                name="dates"
+                                label="{i18n>mainDates}"
+                                groupName="Filters"
+                                visibleInFilterBar="true"
+                            >
+                                <fb:control>
+                                    <DateRangeSelection
+                                        id="DateRange"
+                                        required="true"
+                                        placeholder="{i18n>rangoFechas}"
+                                    />
+                                </fb:control>
+                            </fb:FilterGroupItem>
+                            <fb:FilterGroupItem
+                                id="Filter_Invoices"
+                                name="invoices"
+                                label="{i18n>mainFacturas}"
+                                groupName="Filters"
+                                visibleInFilterBar="true"
+                            >
+                                <fb:control>
+                                    <Input id="Input_Invoice" />
+                                </fb:control>
+                            </fb:FilterGroupItem>
+                            <fb:FilterGroupItem
+                                id="Filter_Material"
+                                name="material"
+                                label="{i18n>mainMaterial}"
+                                groupName="Filters"
+                                visibleInFilterBar="true"
+                            >
+                                <fb:control>
+                                    <Input id="Input_Material" />
+                                </fb:control>
+                            </fb:FilterGroupItem>
+                            <fb:FilterGroupItem
+                                id="Filter_OrdenesCompra"
+                                name="ordenesCompra"
+                                label="{i18n>mainOrdenesCompra}"
+                                groupName="Filters"
+                                visibleInFilterBar="true"
+                            >
+                                <fb:control>
+                                    <Input id="Input_OrdenCompra" />
+                                </fb:control>
+                            </fb:FilterGroupItem>
+                            <fb:FilterGroupItem
+                                id="Filter_Cliente"
+                                name="cliente"
+                                label="{i18n>mainCliente}"
+                                groupName="Filters"
+                                visibleInFilterBar="true"
+                            >
+                                <fb:control>
+                                    <Input id="Input_Cliente" />
+                                </fb:control>
+                            </fb:FilterGroupItem>
+                            <fb:FilterGroupItem
+                                id="Filter_Proveedor"
+                                name="proveedor"
+                                label="{i18n>mainProveedor}"
+                                groupName="Filters"
+                                visibleInFilterBar="true"
+                            >
+                                <fb:control>
+                                    <Input id="Input_Proveedor" />
+                                </fb:control>
+                            </fb:FilterGroupItem>
+                        </fb:filterGroupItems>
+                    </fb:FilterBar>
+                </f:content>
+            </f:DynamicPageHeader>
+        </f:header>
+        <f:content>
+            <IconTabBar id="MainView_IconTabBar">
+                <items>
+                    <IconTabFilter
+                        id="Tab_Virtual"
+                        text="{i18n>mainvirtual}"
+                        key="virtual"
+                    >
+                        <table:Table
+                            id="Table_Virtual"
+                            selectionMode="None"
+                            rows="{facturas>/facturas}"
                         >
-                            <Button
-                                text="DB Stock MP"
-                                press="onPressViewList"
-                                width="200px"
-                            />
-                            <Button
-                                text="DB Facturaciones"
-                                press="onPressViewFacturaciones"
-                                width="200px"
-                            />
-                            <Button
-                                text="DB Productos Terminados"
-                                press="onPressViewPT"
-                                width="200px"
-                            />
-                        </HBox>
-                    </content>
-                </Panel>
+                            <table:extension>
+                                <OverflowToolbar>
+                                    <ToolbarSpacer />
+                                    <Button
+                                        icon="sap-icon://excel-attachment"
+                                        type="Transparent"
+                                        press="onExportToExcel"
+                                    />
+                                </OverflowToolbar>
+                            </table:extension>
+                            <table:columns>
+                                <table:Column width="8rem">
+                                    <Label text="{i18n>mainFactura}" />
+                                    <table:template>
+                                        <Text text="{facturas>Factura}" />
+                                    </table:template>
+                                </table:Column>
+                                <table:Column width="8rem">
+                                    <Label text="{i18n>mainFecha}" />
+                                    <table:template>
+                                        <Text text="{facturas>Fecha}" />
+                                    </table:template>
+                                </table:Column>
+                                <table:Column width="8rem">
+                                    <Label text="{i18n>mainOrdenDeCompra}" />
+                                    <table:template>
+                                        <Text text="{facturas>OrdenDeCompra}" />
+                                    </table:template>
+                                </table:Column>
+                                <table:Column width="8rem">
+                                    <Label text="{i18n>mainCliente}" />
+                                    <table:template>
+                                        <Text text="{facturas>Cliente}" />
+                                    </table:template>
+                                </table:Column>
+                                <table:Column width="8rem">
+                                    <Label text="{i18n>mainCuprum}" />
+                                    <table:template>
+                                        <Text text="{facturas>Cuprum}" />
+                                    </table:template>
+                                </table:Column>
+                                <table:Column width="10rem">
+                                    <Label
+                                        text="{i18n>mainFraccionArancelaria}"
+                                    />
+                                    <table:template>
+                                        <Text
+                                            text="{facturas>FraccionArancelaria}"
+                                        />
+                                    </table:template>
+                                </table:Column>
+                                <table:Column width="8rem">
+                                    <Label text="{i18n>mainDescripcion}" />
+                                    <table:template>
+                                        <Text text="{facturas>Descripcion}" />
+                                    </table:template>
+                                </table:Column>
+                                <table:Column width="10rem">
+                                    <Label
+                                        text="{i18n>mainDescripcionPedimento}"
+                                    />
+                                    <table:template>
+                                        <Text
+                                            text="{facturas>DescripcionPedimento}"
+                                        />
+                                    </table:template>
+                                </table:Column>
+                                <table:Column width="8rem">
+                                    <Label text="{i18n>mainPiezas}" />
+                                    <table:template>
+                                        <Text text="{facturas>Piezas}" />
+                                    </table:template>
+                                </table:Column>
+                                <table:Column width="8rem">
+                                    <Label text="{i18n>mainKilos}" />
+                                    <table:template>
+                                        <Text text="{facturas>Kilos}" />
+                                    </table:template>
+                                </table:Column>
 
-                <!-- Filtros -->
-                <Panel headerText="Filtros de Reporte" width="auto" class="sapUiResponsiveMargin" expandable="true" expanded="true">
-                    <content>
-                        <HBox class="sapUiSmallMargin" justifyContent="SpaceAround">
-                            <!-- Filtro Fecha -->
-                            <VBox>
-                                <Text text="Fecha" />
-                                <DateRangeSelection
-                                    id="dateRange"
-                                    placeholder="Selecciona un rango de fechas"
-                                />
-                            </VBox>
+                                <table:Column width="8rem">
+                                    <Label text="{i18n>mainLibras}" />
+                                    <table:template>
+                                        <Text text="{facturas>Libras}" />
+                                    </table:template>
+                                </table:Column>
+                                <table:Column width="8rem">
+                                    <Label text="{i18n>mainMetros}" />
+                                    <table:template>
+                                        <Text text="{facturas>Metros}" />
+                                    </table:template>
+                                </table:Column>
+                                <table:Column width="8rem">
+                                    <Label text="{i18n>mainPies}" />
+                                    <table:template>
+                                        <Text text="{facturas>Pies}" />
+                                    </table:template>
+                                </table:Column>
+                                <table:Column width="8rem">
+                                    <Label text="{i18n>mainUM}" />
+                                    <table:template>
+                                        <Text text="{facturas>UM}" />
+                                    </table:template>
+                                </table:Column>
+                                <table:Column width="8rem">
+                                    <Label text="{i18n>mainPiezas}" />
+                                    <table:template>
+                                        <Text text="{facturas>Piezas}" />
+                                    </table:template>
+                                </table:Column>
+                                <table:Column width="8rem">
+                                    <Label text="{i18n>mainUnitarioUSD}" />
+                                    <table:template>
+                                        <Text text="{facturas>UnitarioUSD}" />
+                                    </table:template>
+                                </table:Column>
+                                <table:Column width="8rem">
+                                    <Label text="{i18n>mainTotalUSD}" />
+                                    <table:template>
+                                        <Text text="{facturas>TotalUSD}" />
+                                    </table:template>
+                                </table:Column>
+                            </table:columns>
+                        </table:Table>
+                    </IconTabFilter>
 
-                            <!-- Filtro Factura -->
-                            <VBox>
-                                <Text text="Factura" />
-                                <Select id="selectFactura">
-                                    <!-- Opciones dinámicas se llenarán aquí -->
-                                    <items>
-                                        <core:Item key="{facturas>FACTURA}" text="{facturas>FACTURA}" />
-                                    </items>
-                                </Select>
-                            </VBox>
+                    <IconTabFilter
+                        id="Tab_MP"
+                        text="{i18n>mainMP}"
+                        key="MP"
+                    >
+                        <table:Table
+                            id="Table_MP"
+                            selectionMode="None"
+                            rows="{productos>/productos}"
+                        >
+                            <table:extension>
+                                <OverflowToolbar>
+                                    <ToolbarSpacer />
+                                    <Button
+                                        icon="sap-icon://excel-attachment"
+                                        type="Transparent"
+                                        press="onExportToExcel"
+                                    />
 
-                            <!-- Filtro Material -->
-                            <VBox>
-                                <Text text="Material" />
-                                <Select id="selectMaterial">
-                                    <!-- Opciones dinámicas se llenarán aquí -->
-                                </Select>
-                            </VBox>
+                                    <Button
+                                        icon="sap-icon://palette"
+                                        text="Cambiar Tema"
+                                        press="onChangeTheme"
+                                    />
+                                </OverflowToolbar>
+                            </table:extension>
 
-                            <!-- Filtro Órdenes de Compra -->
-                            <VBox>
-                                <Text text="Orden de Compra" />
-                                <Select id="selectOrdenCompra">
-                                    <!-- Opciones dinámicas se llenarán aquí -->
-                                </Select>
-                            </VBox>
+                            <table:columns>
+                                <table:Column width="8rem">
+                                    <Label text="{i18n>mpNoParte}" />
+                                    <table:template>
+                                        <Text text="{productos>NoParte}" />
+                                    </table:template>
+                                </table:Column>
 
-                            <!-- Filtro Cliente -->
-                            <VBox>
-                                <Text text="Cliente" />
-                                <Select id="selectCliente">
-                                    <!-- Opciones dinámicas se llenarán aquí -->
-                                </Select>
-                            </VBox>
+                                <table:Column width="8rem">
+                                    <Label text="{i18n>mpDescripcion}" />
+                                    <table:template>
+                                        <Text text="{productos>Descripcion}" />
+                                    </table:template>
+                                </table:Column>
 
-                            <!-- Filtro Proveedor -->
-                            <VBox>
-                                <Text text="Proveedor" />
-                                <Select id="selectProveedor">
-                                    <!-- Opciones dinámicas se llenarán aquí -->
-                                </Select>
-                            </VBox>
+                                <table:Column width="11rem">
+                                    <Label
+                                        text="{i18n>mpDescripcionEnIngles}"
+                                    />
+                                    <table:template>
+                                        <Text text="{productos>DescripcionEnIngles}" />
+                                    </table:template>
+                                </table:Column>
 
-                            <!-- Botón para aplicar filtros -->
-                            <Button text="Aplicar filtros" press="onApplyFilters" />
-                        </HBox>
-                    </content>
-                </Panel>
+                                <table:Column width="8rem">
+                                    <Label text="{i18n>mpCategoria1}" />
+                                    <table:template>
+                                        <Text text="{productos>Categoria1}" />
+                                    </table:template>
+                                </table:Column>
 
-                <!-- Tabla para mostrar los datos -->
-                <Panel>
-                    <Table items="{/facturas}">
-                        <columns>
-                            <Column>
-                                <Text text="Factura" />
-                            </Column>
-                            <Column>
-                                <Text text="Fecha" />
-                            </Column>
-                            <Column>
-                                <Text text="Orden de Compra" />
-                            </Column>
-                            <Column>
-                                <Text text="Cliente" />
-                            </Column>
-                            <Column>
-                                <Text text="Proveedor" />
-                            </Column>
-                        </columns>
+                                <table:Column width="8rem">
+                                    <Label text="{i18n>mpCategoria2}" />
+                                    <table:template>
+                                        <Text text="{productos>Categoria2}" />
+                                    </table:template>
+                                </table:Column>
 
-                        <items>
-                            <ColumnListItem>
-                                <cells>
-                                    <Text text="{FACTURA}" />
-                                    <Text text="{FECHA}" />
-                                    <Text text="{ORDEN_COMPRA}" />
-                                    <Text text="{CLIENTE}" />
-                                    <Text text="{PROVEEDOR}" />
-                                </cells>
-                            </ColumnListItem>
-                        </items>
-                    </Table>
-                </Panel>
-                
-                <!-- Imagen -->
-                <Image
-                    src="images/image.png"
-                    width="100%"
-                    height="100%"
-                    alt="Mi Imagen"
-                />
-            </Page>
-        </App>
-    </Shell>
+                                <table:Column width="11rem">
+                                    <Label
+                                        text="{i18n>mpFraccionArancelaria}"
+                                    />
+                                    <table:template>
+                                        <Text text="{productos>FraccionArancelaria}" />
+                                    </table:template>
+                                </table:Column>
+
+                                <table:Column width="8rem">
+                                    <Label text="{i18n>mpFADesperdicio}" />
+                                    <table:template>
+                                        <Text text="{productos>FADesperdicio}" />
+                                    </table:template>
+                                </table:Column>
+
+                                <table:Column width="8rem">
+                                    <Label text="{i18n>mpUMComercial}" />
+                                    <table:template>
+                                        <Text text="{productos>UMComercial}" />
+                                    </table:template>
+                                </table:Column>
+
+                                <table:Column width="8rem">
+                                    <Label text="{i18n>mpUMTarifa}" />
+                                    <table:template>
+                                        <Text text="{productos>UMTarifa}" />
+                                    </table:template>
+                                </table:Column>
+
+                                <table:Column width="8rem">
+                                    <Label text="{i18n>mpTipoMP}" />
+                                    <table:template>
+                                        <Text text="{productos>TipoMP}" />
+                                    </table:template>
+                                </table:Column>
+
+                                <table:Column width="8rem">
+                                    <Label text="{i18n>mainFactura}" />
+                                    <table:template>
+                                        <Text text="{productos>Factura}" />
+                                    </table:template>
+                                </table:Column>
+
+                                <table:Column width="8rem">
+                                    <Label text="{i18n>mpCategoriaImmex}" />
+                                    <table:template>
+                                        <Text text="{productos>CategoriaImmex}" />
+                                    </table:template>
+                                </table:Column>
+
+                                <table:Column width="8rem">
+                                    <Label text="{i18n>mpPaisOrigen}" />
+                                    <table:template>
+                                        <Text text="{productos>PaisOrigen}" />
+                                    </table:template>
+                                </table:Column>
+
+                                <table:Column width="8rem">
+                                    <Label text="{i18n>mpCostoUnitario}" />
+                                    <table:template>
+                                        <Text text="{productos>CostoUnitario}" />
+                                    </table:template>
+                                </table:Column>
+
+                                <table:Column width="8rem">
+                                    <Label text="{i18n>mpPesoEnKgs}" />
+                                    <table:template>
+                                        <Text text="{productos>PesoEnKgs}" />
+                                    </table:template>
+                                </table:Column>
+
+                                <table:Column width="8rem">
+                                    <Label text="{i18n>mpReferencia}" />
+                                    <table:template>
+                                        <Text text="{productos>Referencia}" />
+                                    </table:template>
+                                </table:Column>
+
+                                <table:Column width="8rem">
+                                    <Label text="{i18n>mpObservaciones}" />
+                                    <table:template>
+                                        <Text text="{productos>Observaciones}" />
+                                    </table:template>
+                                </table:Column>
+                            </table:columns>
+                        </table:Table>
+                    </IconTabFilter>
+
+                    <IconTabFilter
+                        id="Tab_PT"
+                        text="{i18n>mainPT}"
+                        key="PT"
+                    >
+                        <table:Table
+                            id="Table_PT"
+                            selectionMode="None"
+                            rows="{productos_terminados>/productos_terminados}"
+                        >
+                            <table:extension>
+                                <OverflowToolbar>
+                                    <ToolbarSpacer />
+                                    <Button
+                                        icon="sap-icon://excel-attachment"
+                                        type="Transparent"
+                                        press="onExportToExcel"
+                                    />
+                                </OverflowToolbar>
+                            </table:extension>
+
+                            <table:columns>
+                                <table:Column width="8rem">
+                                    <Label text="{i18n>ptNoParte}" />
+                                    <table:template>
+                                        <Text text="{productos_terminados>NoParte}" />
+                                    </table:template>
+                                </table:Column>
+
+                                <table:Column width="9rem">
+                                    <Label text="{i18n>ptNSDM_DDL_MSEG}" />
+                                    <table:template>
+                                        <Text text="{productos_terminados>NSDM_DDL_MSEG}" />
+                                    </table:template>
+                                </table:Column>
+
+                                <table:Column width="8rem">
+                                    <Label text="{i18n>ptDescripcion}" />
+                                    <table:template>
+                                        <Text text="{productos_terminados>Descripcion}" />
+                                    </table:template>
+                                </table:Column>
+
+                                <table:Column width="12rem">
+                                    <Label
+                                        text="{i18n>ptDescripcionEnIngles}"
+                                    />
+                                    <table:template>
+                                        <Text text="{productos_terminados>DescripcionEnIngles}" />
+                                    </table:template>
+                                </table:Column>
+
+                                <table:Column width="8rem">
+                                    <Label text="{i18n>ptCategoria1}" />
+                                    <table:template>
+                                        <Text text="{productos_terminados>Categoria1}" />
+                                    </table:template>
+                                </table:Column>
+
+                                <table:Column width="11rem">
+                                    <Label
+                                        text="{i18n>ptFraccionArancelaria}"
+                                    />
+                                    <table:template>
+                                        <Text text="{productos_terminados>FraccionArancelaria}" />
+                                    </table:template>
+                                </table:Column>
+
+                                <table:Column width="10rem">
+                                    <Label text="{i18n>ptFADesperdicio}" />
+                                    <table:template>
+                                        <Text text="{productos_terminados>FADesperdicio}" />
+                                    </table:template>
+                                </table:Column>
+
+                                <table:Column width="8rem">
+                                    <Label text="{i18n>ptUMComercial}" />
+                                    <table:template>
+                                        <Text text="{productos_terminados>UMComercial}" />
+                                    </table:template>
+                                </table:Column>
+
+                                <table:Column width="8rem">
+                                    <Label text="{i18n>ptUMTarifa}" />
+                                    <table:template>
+                                        <Text text="{productos_terminados>UMTarifa}" />
+                                    </table:template>
+                                </table:Column>
+
+                                <table:Column width="8rem">
+                                    <Label text="{i18n>ptPaisDestino}" />
+                                    <table:template>
+                                        <Text text="{productos_terminados>PaisDestino}" />
+                                    </table:template>
+                                </table:Column>
+
+                                <table:Column width="8rem">
+                                    <Label text="{i18n>ptCostoUnitario}" />
+                                    <table:template>
+                                        <Text text="{productos_terminados>CostoUnitario}" />
+                                    </table:template>
+                                </table:Column>
+
+                                <table:Column width="8rem">
+                                    <Label text="{i18n>ptPesoEnKgs}" />
+                                    <table:template>
+                                        <Text text="{productos_terminados>PesoEnKgs}" />
+                                    </table:template>
+                                </table:Column>
+
+                                <table:Column width="8rem">
+                                    <Label text="{i18n>ptReferencia}" />
+                                    <table:template>
+                                        <Text text="{productos_terminados>Referencia}" />
+                                    </table:template>
+                                </table:Column>
+
+                                <table:Column width="8rem">
+                                    <Label text="{i18n>ptObservaciones}" />
+                                    <table:template>
+                                        <Text text="{productos_terminados>Observaciones}" />
+                                    </table:template>
+                                </table:Column>
+
+                                <table:Column width="11rem">
+                                    <Label text="{i18n>ptFechaEstructura}" />
+                                    <table:template>
+                                        <Text text="{productos_terminados>FechaEstructura}" />
+                                    </table:template>
+                                </table:Column>
+
+                                <table:Column width="13rem">
+                                    <Label
+                                        text="{i18n>ptNoParteDelComponente}"
+                                    />
+                                    <table:template>
+                                        <Text text="{productos_terminados>NoParteDelComponente}" />
+                                    </table:template>
+                                </table:Column>
+
+                                <table:Column width="11rem">
+                                    <Label text="{i18n>ptUnidadComponente}" />
+                                    <table:template>
+                                        <Text text="{productos_terminados>UnidadComponente}" />
+                                    </table:template>
+                                </table:Column>
+
+                                <table:Column width="11rem">
+                                    <Label
+                                        text="{i18n>ptCantidadIncorporada}"
+                                    />
+                                    <table:template>
+                                        <Text text="{productos_terminados>CantidadIncorporada}" />
+                                    </table:template>
+                                </table:Column>
+
+                                <table:Column width="10rem">
+                                    <Label text="{i18n>ptCantMerma}" />
+                                    <table:template>
+                                        <Text text="{productos_terminados>CantMerma}" />
+                                    </table:template>
+                                </table:Column>
+
+                                <table:Column width="12rem">
+                                    <Label text="{i18n>ptCantDesperdicio}" />
+                                    <table:template>
+                                        <Text text="{productos_terminados>CantDesperdicio}" />
+                                    </table:template>
+                                </table:Column>
+
+                                <table:Column width="8rem">
+                                    <Label text="{i18n>ptFDesde}" />
+                                    <table:template>
+                                        <Text text="{productos_terminados>FDesde}" />
+                                    </table:template>
+                                </table:Column>
+
+                                <table:Column width="8rem">
+                                    <Label text="{i18n>ptFHasta}" />
+                                    <table:template>
+                                        <Text text="{productos_terminados>FHasta}" />
+                                    </table:template>
+                                </table:Column>
+                            </table:columns>
+                        </table:Table>
+                    </IconTabFilter>
+                </items>
+            </IconTabBar>
+        </f:content>
+    </f:DynamicPage>
 </mvc:View>

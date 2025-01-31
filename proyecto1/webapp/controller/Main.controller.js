@@ -8,76 +8,89 @@ sap.ui.define([
 
     return Controller.extend("logaligroup.proyecto1.controller.Main", {
         onInit: function () {
-            
-// Configura un modelo JSON vacío y lo establece en la vista
-            var oModel = new JSONModel();
-            this.getView().setModel(oModel);
-
-            // Cargar el archivo layoutPT.json
-            var oModelPT = new JSONModel("localService/layoutPT.json");
-            this.getView().setModel(oModelPT, "productosTerminados");
-
-            // Cargar el archivo layoutIMPO.json
             var oModelIMPO = new JSONModel("localService/layoutIMPO.json");
             this.getView().setModel(oModelIMPO, "facturas");
 
-            // Cargar el archivo layoutMP.json
+            oModelIMPO.attachRequestCompleted(function () {
+                console.log("Datos cargados correctamente:", oModelIMPO.getData());
+            });
+            oModelIMPO.attachRequestFailed(function () {
+                console.error("Error al cargar datos desde impo.json");
+            });
+
+
             var oModelMP = new JSONModel("localService/layoutMP.json");
             this.getView().setModel(oModelMP, "productos");
 
-            // Cargar otros modelos si es necesario, por ejemplo para clientes y proveedores
-            var oClientes = new JSONModel("localService/clientes.json");
-            this.getView().setModel(oClientes, "clientes");
+            oModelMP.attachRequestCompleted(function () {
+                console.log("Datos cargados correctamente:", oModelMP.getData());
+            });
+            oModelMP.attachRequestFailed(function () {
+                console.error("Error al cargar datos desde MP.json");
+            });
 
-            var oProveedores = new JSONModel("localService/proveedores.json");
-            this.getView().setModel(oProveedores, "proveedores");
-            },
+            var oModelPT = new JSONModel("localService/layoutPT.json");
+            this.getView().setModel(oModelPT, "productos_terminados");
 
-        onPressViewList: function () {
-            var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
-            if (oRouter) {
-                oRouter.navTo("viewList");
-                this._loadData("localService/layoutIMPO.json");  // Cargar layoutIMPO.json
-            }
-        },
-        
-        onPressViewFacturaciones: function () {
-            var oRouter = this.getOwnerComponent().getRouter();
-            oRouter.navTo("viewFacturaciones");
-            this._loadData("localService/layoutM.json");  // Cargar layoutM.json
-        },
-        
-        onPressViewPT: function () {
-            var oRouter = this.getOwnerComponent().getRouter();
-            oRouter.navTo("viewPT");
-            this._loadData("localService/layoutPT.json");  // Cargar layoutPT.json
+            oModelPT.attachRequestCompleted(function () {
+                console.log("Datos cargados correctamente:", oModelPT.getData());
+            });
+            oModelPT.attachRequestFailed(function () {
+                console.error("Error al cargar datos desde impo.json");
+            });
         },
 
-        _loadData: function (sPath) {
-            // Carga datos desde un archivo JSON y los establece en el modelo
-            var oModel = this.getView().getModel();
-            if (oModel) {
-                oModel.loadData(sPath, null, true)
-                    .then(function () {
-                        console.log("Datos cargados correctamente desde:", sPath);
-                    })
-                    .catch(function (oError) {
-                        console.error("Error al cargar datos desde:", sPath, oError);
-                    });
-            } else {
-                console.error("El modelo JSON no está configurado.");
-            }
-        },
+        onSearchFilters: function (oEvent) {
+            var oFilterBar = this.getView().byId("filterbar");
+            var aFilters = this._collectFilters(oFilterBar);
 
-        // Filtrar los datos por "Cliente"
-        onApplyFilters: function () {
-            var oFilter = new Filter("Cliente", FilterOperator.EQ, "CLT-001"); // Filtra por Cliente: CLT-001
-            var oBinding = this.getView().byId("facturasList").getBinding("items"); // Accede al binding de la tabla de facturas
+            var oTable = this.getView().byId("Table_Virtual");
+            var oBinding = oTable.getBinding("rows");
             if (oBinding) {
-                oBinding.filter(oFilter); // Aplica el filtro
+                oBinding.filter(aFilters);
             } else {
-                console.error("No se encontró el binding de los ítems.");
+                console.error("No se encontró el binding de la tabla.");
             }
+        },
+        // Recopilar filtros desde la FilterBar
+        _collectFilters: function (oFilterBar) {
+            var aFilters = [];
+            
+            var oDateRange = oFilterBar.getFilterItems().find(f => f.getId().includes("DateRange"));
+            if (oDateRange) {
+                var oDateRangeValue = oDateRange.getControl().getDateValue();
+                var oDateRangeSecondValue = oDateRange.getControl().getSecondDateValue();
+                if (oDateRangeValue && oDateRangeSecondValue) {
+                    aFilters.push(new Filter("Fecha", FilterOperator.BT, oDateRangeValue, oDateRangeSecondValue));
+                }
+            }
+
+            var oInvoiceInput = oFilterBar.getFilterItems().find(f => f.getId().includes("Input_Invoice"));
+            if (oInvoiceInput) {
+                var sInvoice = oInvoiceInput.getControl().getValue();
+                if (sInvoice) {
+                    aFilters.push(new Filter("Factura", FilterOperator.Contains, sInvoice));
+                }
+            }
+
+            // Agregar filtros para Material, OrdenesCompra, Cliente, Proveedor, etc.
+            var aOtherFilters = [
+                { id: "Input_Material", property: "Material" },
+                { id: "Input_OrdenCompra", property: "OrdenDeCompra" },
+                { id: "Input_Cliente", property: "Cliente" },
+                { id: "Input_Proveedor", property: "Proveedor" }
+            ];
+            aOtherFilters.forEach(oFilterConfig => {
+                var oInput = oFilterBar.getFilterItems().find(f => f.getId().includes(oFilterConfig.id));
+                if (oInput) {
+                    var sValue = oInput.getControl().getValue();
+                    if (sValue) {
+                        aFilters.push(new Filter(oFilterConfig.property, FilterOperator.Contains, sValue));
+                    }
+                }
+            });
+
+            return aFilters;
         }
     });
 });
