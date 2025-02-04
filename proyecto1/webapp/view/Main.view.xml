@@ -15,9 +15,9 @@
                     <f:content>
                         <fb:FilterBar id="filterbar" search="onSearchFilters" useToolbar="true">
                             <fb:filterGroupItems>
-                                <fb:FilterGroupItem id="Filter_Dates" name="dates" label="{i18n>mainDates}" groupName="Filters" visibleInFilterBar="true">
+                                <fb:FilterGroupItem id="Filter_Dates"  name="dates" label="{i18n>mainDates}" groupName="Filters" visibleInFilterBar="true">
                                     <fb:control>
-                                        <DateRangeSelection id="DateRange" required="true" placeholder="{i18n>rangoFechas}"/>
+                                        <DateRangeSelection id="DateRange" required="true" placeholder="{i18n>rangoFechas}" change="onLiveChangeFilters"  />
                                     </fb:control>
                                 </fb:FilterGroupItem>
                                 <fb:FilterGroupItem id="Filter_Invoices" name="invoices" label="{i18n>mainFacturas}" groupName="Filters" visibleInFilterBar="true" >

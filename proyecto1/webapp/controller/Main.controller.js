@@ -8,7 +8,6 @@ sap.ui.define([
 
     return Controller.extend("logaligroup.proyecto1.controller.Main", {
         onInit: function () {
-            // Cargar los modelos
             var oModelIMPO = new JSONModel("localService/layoutIMPO.json");
             this.getView().setModel(oModelIMPO, "facturas");
 
@@ -19,8 +18,7 @@ sap.ui.define([
             this.getView().setModel(oModelPT, "productos_terminados");
         },
 
-        onLiveChangeFilters: function (oEvent) {
-            // Obtener los valores de los campos de filtro
+        onLiveChangeFilters: function () {
             var oDateRange = this.byId("DateRange");
             var oInvoiceInput = this.byId("Input_Invoice");
             var oMaterialInput = this.byId("Input_Material");
@@ -28,14 +26,30 @@ sap.ui.define([
             var oClienteInput = this.byId("Input_Cliente");
             var oProveedorInput = this.byId("Input_Proveedor");
 
-            // Inicializar filtros
             var aFilters = [];
 
             // Filtro por fechas
             var oStartDate = oDateRange.getDateValue();
             var oEndDate = oDateRange.getSecondDateValue();
+
+            console.log("Fechas seleccionadas (Start, End):", oStartDate, oEndDate);
+
+            // Asegúrate de que las fechas son válidas y en formato Date
             if (oStartDate && oEndDate) {
-                aFilters.push(new Filter("FDesde", FilterOperator.BT, oStartDate, oEndDate));
+                // Verificar que las fechas son objetos Date
+                console.log("Tipo de startDate:", typeof oStartDate);
+                console.log("Tipo de endDate:", typeof oEndDate);
+
+                // Filtrar por fechas
+                aFilters.push(new Filter({
+                    filters: [
+                        new Filter("FDesde", FilterOperator.LE, this._formatDateForFilter(oEndDate)), // FDesde <= oEndDate
+                        new Filter("FHasta", FilterOperator.GE, this._formatDateForFilter(oStartDate)) // FHasta >= oStartDate
+                    ],
+                    and: true
+                }));
+            } else {
+                console.log("Fechas no seleccionadas correctamente.");
             }
 
             // Filtro por factura
@@ -68,7 +82,7 @@ sap.ui.define([
                 aFilters.push(new Filter("Proveedor", FilterOperator.Contains, sProveedor));
             }
 
-            // Aplicar los filtros a las tablas directamente
+            // Aplicar filtros a las tablas
             this.applyFiltersToTable("Table_Virtual", aFilters);
             this.applyFiltersToTable("Table_MP", aFilters);
             this.applyFiltersToTable("Table_PT", aFilters);
@@ -77,16 +91,26 @@ sap.ui.define([
         applyFiltersToTable: function (sTableId, aFilters) {
             var oTable = this.byId(sTableId);
             if (oTable) {
-                var oBinding = oTable.getBinding("rows");  // Asegúrate de usar "rows" y no "items"
+                var oBinding = oTable.getBinding("rows");
                 if (oBinding) {
                     oBinding.filter(aFilters);
                     console.log("Filtros aplicados a la tabla " + sTableId);
                 } else {
-                    console.error("No se encontró el enlace de las filas en la tabla " + sTableId);
+                    console.error("No se encontró el binding en la tabla " + sTableId);
                 }
             } else {
                 console.error("No se encontró la tabla con el ID: " + sTableId);
             }
+        },
+
+        _formatDateForFilter: function (oDate) {
+            if (oDate instanceof Date) {
+                var day = String(oDate.getDate()).padStart(2, "0");
+                var month = String(oDate.getMonth() + 1).padStart(2, "0");
+                var year = oDate.getFullYear();
+                return `${year}-${month}-${day}`; // Formato "yyyy-MM-dd"
+            }
+            return oDate;
         }
     });
 });

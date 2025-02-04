@@ -1,7 +1,6 @@
 {
-    "productos_terminados":
-    [
-        {
+  "productos_terminados": [
+      {
           "NoParte": "NP-001",
           "NSDM_DDL_MSEG": "MATNR-001",
           "Descripcion": "Motor eléctrico de 5 HP",
@@ -22,10 +21,10 @@
           "CantidadIncorporada": 10,
           "CantMerma": "",
           "CantDesperdicio": "",
-          "FDesde": "01/01/2010",
-          "FHasta": "31/12/2060"
-        },
-        {
+          "FDesde": "1990-01-01",
+          "FHasta": "2010-12-31"
+      },
+      {
           "NoParte": "NP-002",
           "NSDM_DDL_MSEG": "MATNR-002",
           "Descripcion": "Cable de cobre de 2mm",
@@ -46,10 +45,10 @@
           "CantidadIncorporada": 1000,
           "CantMerma": "",
           "CantDesperdicio": "",
-          "FDesde": "15/10/1998",
-          "FHasta": "31/12/2100"
-        },
-        {
+          "FDesde": "1990-01-01",
+          "FHasta": "2100-12-31"
+      },
+      {
           "NoParte": "NP-003",
           "NSDM_DDL_MSEG": "MATNR-003",
           "Descripcion": "Resistor 10k ohmios",
@@ -70,10 +69,10 @@
           "CantidadIncorporada": 500,
           "CantMerma": "",
           "CantDesperdicio": "",
-          "FDesde": "29/11/2006",
-          "FHasta": "31/12/2070"
-        },
-        {
+          "FDesde": "2006-11-29",
+          "FHasta": "2070-12-31"
+      },
+      {
           "NoParte": "NP-004",
           "NSDM_DDL_MSEG": "MATNR-004",
           "Descripcion": "Placa base para computadora",
@@ -94,9 +93,8 @@
           "CantidadIncorporada": 200,
           "CantMerma": "",
           "CantDesperdicio": "",
-          "FDesde": "08/09/2002",
-          "FHasta": "31/12/2009"
-        }
-      ]
-      
+          "FDesde": "1990-01-01",
+          "FHasta": "2100-12-31"
+      }
+  ]
 }
