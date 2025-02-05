@@ -4,13 +4,15 @@
     xmlns:core="sap.ui.core"
     xmlns:table="sap.ui.table"
     xmlns:f="sap.f"
+   
     xmlns:fb="sap.ui.comp.filterbar"
     controllerName="logaligroup.proyecto1.controller.Main"
 >
     <App id="idMainApp">
-  
+    
+      
         <f:DynamicPage id="MainView_DynamicPage" backgroundDesign="Transparent" fitContent="true">
-            <f:header>
+            <f:header >
                 <f:DynamicPageHeader id="MainView_DynamicPageHeader" backgroundDesign="Transparent" >
                     <f:content>
                         <fb:FilterBar id="filterbar" search="onSearchFilters" useToolbar="true">
@@ -70,19 +72,25 @@
                             id="Tab_Virtual"
                             text="{i18n>mainvirtual}"
                             key="virtual"
+                            
                         >
                             <table:Table
                                 id="Table_Virtual"
                                 selectionMode="None"
                                 rows="{facturas>/facturas}"
+                                
+                                
                             >
                                 <table:extension>
                                     <OverflowToolbar>
                                         <ToolbarSpacer />
+
+                                        <Button  press="loadModels" icon="sap-icon://show"/>
+
                                         <Button
                                             icon="sap-icon://excel-attachment"
                                             type="Transparent"
-                                            press="onExportToExcel"
+                                            press="onExportAllTables"
                                         />
                                     </OverflowToolbar>
                                 </table:extension>
@@ -215,17 +223,15 @@
                                 <table:extension>
                                     <OverflowToolbar>
                                         <ToolbarSpacer />
+
+                                        <Button  press="loadModels" icon="sap-icon://show"/>
                                         <Button
                                             icon="sap-icon://excel-attachment"
                                             type="Transparent"
-                                            press="onExportToExcel"
+                                            press="onExportAllTables"
                                         />
 
-                                        <Button
-                                            icon="sap-icon://palette"
-                                            text="Cambiar Tema"
-                                            press="onChangeTheme"
-                                        />
+
                                     </OverflowToolbar>
                                 </table:extension>
 
@@ -363,10 +369,12 @@
                                 <table:extension>
                                     <OverflowToolbar>
                                         <ToolbarSpacer />
+
+                                        <Button  press="loadModels" icon="sap-icon://show"/>
                                         <Button
                                             icon="sap-icon://excel-attachment"
                                             type="Transparent"
-                                            press="onExportToExcel"
+                                            press="onExportAllTables"
                                         />
                                     </OverflowToolbar>
                                 </table:extension>
