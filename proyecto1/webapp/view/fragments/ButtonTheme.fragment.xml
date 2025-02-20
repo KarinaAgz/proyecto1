@@ -1,0 +1,26 @@
+<core:FragmentDefinition 
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core">
+
+    <!-- Botón para Tema Claro -->
+    <Button
+        text="Tema Claro"
+        press=".onTheme">
+        <customData>
+            <core:CustomData
+                key="theme"
+                value="sap_fiori_3" />
+        </customData>
+    </Button>
+
+    <!-- Botón para Tema Oscuro -->
+    <Button
+        text="Tema Oscuro"
+        press=".onTheme">
+        <customData>
+            <core:CustomData
+                key="theme"
+                value="sap_fiori_dark" />
+        </customData>
+    </Button>
+</core:FragmentDefinition>

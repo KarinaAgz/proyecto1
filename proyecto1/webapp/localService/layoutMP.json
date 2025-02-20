@@ -1,0 +1,77 @@
+{
+  "productos":
+  [
+  {
+    "NoParte": "NP-001",
+    "Descripcion": "Motor de corriente continua 5 HP",
+    "DescripcionEnIngles": "",
+    "Categoria1": "",
+    "Categoria2": "",
+    "FraccionArancelaria": "8501.52.00",
+    "FADesperdicio": "76020001",
+    "UMComercial": "Pieza",
+    "UMTarifa": "",
+    "TipoMP": "",
+    "CategoriaImmex": "",
+    "PaisOrigen": "MEX",
+    "CostoUnitario": 100.00,
+    "PesoEnKgs": 12.5,
+    "Referencia": "",
+    "Observaciones": ""
+  },
+  {
+    "NoParte": "NP-002",
+    "Descripcion": "Cable de cobre 2mm",
+    "DescripcionEnIngles": "",
+    "Categoria1": 1,
+    "Categoria2":3,
+    "FraccionArancelaria": "7408.21.00",
+    "FADesperdicio": "76020001",
+    "UMComercial": "Metro",
+    "UMTarifa": "",
+    "TipoMP": "",
+    "CategoriaImmex": "",
+    "PaisOrigen": "MEX",
+    "CostoUnitario": 1.50,
+    "PesoEnKgs": 0.05,
+    "Referencia": "",
+    "Observaciones": ""
+  },
+  {
+    "NoParte": "NP-003",
+    "Descripcion": "Resistor 10k ohmios",
+    "DescripcionEnIngles": "",
+    "Categoria1": "",
+    "Categoria2": "",
+    "FraccionArancelaria": "8533.21.00",
+    "FADesperdicio": "76020001",
+    "UMComercial": "Pieza",
+    "UMTarifa": "",
+    "TipoMP": "",
+    "CategoriaImmex": "",
+    "PaisOrigen": "MEX",
+    "CostoUnitario": 0.25,
+    "PesoEnKgs": 0.01,
+    "Referencia": "",
+    "Observaciones": ""
+  },
+  {
+    "NoParte": "NP-004",
+    "Descripcion": "Placa base para computadora",
+    "DescripcionEnIngles": "",
+    "Categoria1": "",
+    "Categoria2": "",
+    "FraccionArancelaria": "8473.30.01",
+    "FADesperdicio": "76020001",
+    "UMComercial": "Pieza",
+    "UMTarifa": "",
+    "TipoMP": "",
+    "CategoriaImmex": "",
+    "PaisOrigen": "MEX",
+    "CostoUnitario": 5.00,
+    "PesoEnKgs": 0.2,
+    "Referencia": "",
+    "Observaciones": ""
+  }
+]
+}

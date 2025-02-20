@@ -1,0 +1,126 @@
+<mvc:View
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    controllerName="logaligroup.proyecto1.controller.ViewFacturaciones"
+>
+    <Page
+        id="idFacturacionesPage"
+        title="Facturaciones"
+    >
+        <content>
+            <HeaderContainer>
+                <!-- Botón de regreso -->
+                <HBox
+                    justifyContent="SpaceBetween"
+                    alignItems="Center"
+                >
+                    <Button
+                        press="onPressBackToMain"
+                        icon="sap-icon://nav-back"
+                    />
+                </HBox>
+
+                <!-- Barra con filtros -->
+                <HBox
+                    justifyContent="SpaceBetween"
+                    alignItems="Center"
+                >
+                    <Input
+                        id="idOrdenCompraFilter"
+                        placeholder="Ingresa orden de compra"
+                        width="300px"
+                        liveChange=".onFilterTable"
+                        justifyContent="Spacebetween"
+                    />
+                    <DatePicker
+                        id="idFechaFilter"
+                        placeholder="Selecciona una fecha"
+                        width="300px"
+                        change=".onFilterTable"
+                    />
+                </HBox>
+            </HeaderContainer>
+            <ToolbarSeparator />
+
+            <ScrollContainer
+                horizontal="true"
+                vertical="false"
+                width="100%"
+            >
+                <Table
+                    id="idTableFacturas"
+                    items=""
+                    growing="true"
+                    growingScrollToLoad="true"
+                    width="auto"
+                >
+                    <columns>
+                        <Column width="150px">
+                            <Text text="Factura" />
+                        </Column>
+
+                        <Column width="150px">
+                            <Text text="Fecha" />
+                        </Column>
+
+                        <Column width="150px">
+                            <Text text="OrdenDeCompra" />
+                        </Column>
+
+                        <Column width="150px">
+                            <Text text="Cliente" />
+                        </Column>
+
+                        <Column width="150px">
+                            <Text text="Cuprum" />
+                        </Column>
+
+                        <Column width="170px">
+                            <Text text="FraccionArancelaria" />
+                        </Column>
+
+                        <Column width="150px">
+                            <Text text="Descripcion" />
+                        </Column>
+
+                        <Column width="180px">
+                            <Text text="DescripcionPedimento" />
+                        </Column>
+
+                        <Column width="150px">
+                            <Text text="Piezas" />
+                        </Column>
+
+                        <Column width="150px">
+                            <Text text="Kilos" />
+                        </Column>
+
+                        <Column width="150px">
+                            <Text text="Libras" />
+                        </Column>
+
+                        <Column width="150px">
+                            <Text text="Metros" />
+                        </Column>
+
+                        <Column width="150px">
+                            <Text text="Pies" />
+                        </Column>
+
+                        <Column width="150px">
+                            <Text text="UM" />
+                        </Column>
+
+                        <Column width="150px">
+                            <Text text="UnitarioUSD" />
+                        </Column>
+
+                        <Column width="150px">
+                            <Text text="TotalUSD" />
+                        </Column>
+                    </columns>
+                </Table>
+            </ScrollContainer>
+        </content>
+    </Page>
+</mvc:View>

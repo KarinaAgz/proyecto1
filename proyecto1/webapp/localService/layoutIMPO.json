@@ -1,0 +1,78 @@
+{
+    "facturas": [
+      {
+        "Factura": "FAC-001",
+        "Fecha": "2025-01-20",
+        "OrdenDeCompra": "ZIMP1234",
+        "Cliente": "CLT-001",
+        "Cuprum": "CUP-001",
+        "FraccionArancelaria": "8501.52.00",
+        "Descripcion": "Motor de corriente continua 5 HP",
+        "DescripcionPedimento": "Motor de corriente continua",
+        "Piezas": 10,
+        "Kilos": 125,
+        "Libras": 275,
+        "Metros": 25,
+        "Pies": 82.02,
+        "UM": "Pieza",
+        "UnitarioUSD": 100.00,
+        "TotalUSD": 1000.00
+      },
+      {
+        "Factura": "FAC-002",
+        "Fecha": "2025-01-21",
+        "OrdenDeCompra": "ZIMP5678",
+        "Cliente": "CLT-002",
+        "Cuprum": "CUP-002",
+        "FraccionArancelaria": "7408.21.00",
+        "Descripcion": "Cable de cobre 2mm",
+        "DescripcionPedimento": "Cable de cobre",
+        "Piezas": 1000,
+        "Kilos": 50,
+        "Libras": 110,
+        "Metros": 500,
+        "Pies": 1640.42,
+        "UM": "Metro",
+        "UnitarioUSD": 1.50,
+        "TotalUSD": 1500.00
+      },
+      {
+        "Factura": "FAC-003",
+        "Fecha": "2025-01-22",
+        "OrdenDeCompra": "ZIMP8765",
+        "Cliente": "CLT-003",
+        "Cuprum": "CUP-003",
+        "FraccionArancelaria": "8533.21.00",
+        "Descripcion": "Resistor 10k ohmios",
+        "DescripcionPedimento": "Resistor 10k ohmios",
+        "Piezas": 200,
+        "Kilos": 10,
+        "Libras": 22.05,
+        "Metros": 20,
+        "Pies": 65.62,
+        "UM": "Pieza",
+        "UnitarioUSD": 0.25,
+        "TotalUSD": 50.00
+      },
+      {
+        "Factura": "FAC-004",
+        "Fecha": "2025-01-23",
+        "OrdenDeCompra": "ZIMP1357",
+        "Cliente": "CLT-004",
+        "Cuprum": "CUP-004",
+        "FraccionArancelaria": "8473.30.01",
+        "Descripcion": "Placa base para computadora",
+        "DescripcionPedimento": "Placa base para computadora",
+        "Piezas": 5,
+        "Kilos": 1,
+        "Libras": 2.2,
+        "Metros": 10,
+        "Pies": 32.81,
+        "UM": "Pieza",
+        "UnitarioUSD": 5.00,
+        "TotalUSD": 25.00
+      }
+    ]
+    
+      
+}

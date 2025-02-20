@@ -1,0 +1,137 @@
+<mvc:View
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+     xmlns:core="sap.ui.core"
+    controllerName="logaligroup.proyecto1.controller.ViewList"
+>
+    <Page title="layoutMP">
+        <content>
+
+        <HeaderContainer >
+                <HBox justifyContent="SpaceBetween" alignItems="Center" class="sapUiSmallMargin">
+                <Button  press="onPressBackToMain" icon="sap-icon://nav-back"  /> 
+                     
+                 </HBox>
+            <!-- Filtro por NoParte -->
+            <HBox justifyContent="SpaceBetween" alignItems="Center" class="sapUiSmallMargin">
+                <items>
+                    <SearchField
+                        id="searchNoParte"
+                        width="300px"
+                        placeholder="Buscar por NoParte"
+                        liveChange="onSearchNoParte"
+                    />
+                    <SearchField
+                        id="searchDescripcion"
+                        width="300px"
+                        placeholder="Buscar por Descripción"
+                        liveChange="onSearchDescripcion"
+                    />
+
+                     <Select
+                        id="selectCategoria"
+                        width="300px"
+                        
+                        change="onCategoryChange"
+                        items="{categoriesModel>/categoriasMP}"
+                    >
+                        <items>
+                            <core:Item key="{categoriesModel>id}" text="{categoriesModel>name}" />
+                        </items>
+                    </Select>
+                </items>
+            </HBox>
+    </HeaderContainer >
+    <ToolbarSeparator />
+
+            <!-- Scroll container para habilitar desplazamiento horizontal -->
+            <ScrollContainer
+                horizontal="true"
+                vertical="false"
+                width="100%"
+            >
+                <Table
+                    id="idTable"
+                    items="{layoutModel>/productos}"
+                    growing="true"
+                    growingScrollToLoad="true"
+                    width="auto"
+                >
+                    <columns>
+                        <Column width="150px">
+                            <Text text="NoParte" />
+                        </Column>
+                        <Column width="200px">
+                            <Text text="Descripcion" />
+                        </Column>
+                        <Column width="200px">
+                            <Text text="DescripcionEnIngles" />
+                        </Column>
+                        <Column width="150px">
+                            <Text text="Categoria1" />
+                        </Column>
+                        <Column width="150px">
+                            <Text text="Categoria2" />
+                        </Column>
+                        <Column width="180px">
+                            <Text text="FraccionArancelaria" />
+                        </Column>
+                        <Column width="150px">
+                            <Text text="FADesperdicio" />
+                        </Column>
+                        <Column width="120px">
+                            <Text text="UMComercial" />
+                        </Column>
+                        <Column width="120px">
+                            <Text text="UMTarifa" />
+                        </Column>
+                        <Column width="120px">
+                            <Text text="TipoMP" />
+                        </Column>
+                        <Column width="150px">
+                            <Text text="CategoriaImmex" />
+                        </Column>
+                        <Column width="150px">
+                            <Text text="PaisOrigen" />
+                        </Column>
+                        <Column width="150px">
+                            <Text text="CostoUnitario" />
+                        </Column>
+                        <Column width="150px">
+                            <Text text="PesoEnKgs" />
+                        </Column>
+                        <Column width="200px">
+                            <Text text="Referencia" />
+                        </Column>
+                        <Column width="250px">
+                            <Text text="Observaciones" />
+                        </Column>
+                    </columns>
+                    <items>
+                        <ColumnListItem>
+                            <cells>
+                                <Text text="{layoutModel>NoParte}" />
+                                <Text text="{layoutModel>Descripcion}" />
+                                <Text text="{layoutModel>DescripcionEnIngles}"/>
+                                <Text text="{layoutModel>Categoria1}" />
+                                <Text text="{layoutModel>Categoria2}" />
+                                <Text text="{layoutModel>FraccionArancelaria}"/>
+                                <Text text="{layoutModel>FADesperdicio}" />
+                                <Text text="{layoutModel>UMComercial}" />
+                                <Text text="{layoutModel>UMTarifa}" />
+                                <Text text="{layoutModel>TipoMP}" />
+                                <Text text="{layoutModel>CategoriaImmex}" />
+                                <Text text="{layoutModel>PaisOrigen}" />
+                                <Text text="{layoutModel>CostoUnitario}" />
+                                <Text text="{layoutModel>PesoEnKgs}" />
+                                <Text text="{layoutModel>Referencia}" />
+                                <Text text="{layoutModel>Observaciones}" />
+                            </cells>
+                        </ColumnListItem>
+                    </items>
+                </Table>
+            </ScrollContainer>
+        </content>
+
+    </Page>
+</mvc:View>

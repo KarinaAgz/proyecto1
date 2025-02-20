@@ -1,0 +1,139 @@
+{
+    "_version": "1.65.0",
+    "sap.app": {
+      "id": "logaligroup.proyecto1",
+      "type": "application",
+      "i18n": "i18n/i18n.properties",
+      "applicationVersion": {
+        "version": "0.0.1"
+      },
+      "title": "{{appTitle}}",
+      "description": "{{appDescription}}",
+      "resources": "resources.json",
+      "sourceTemplate": {
+        "id": "@sap/generator-fiori:basic",
+        "version": "1.16.2",
+        "toolsId": "2ca6d529-97d4-43e5-99ad-404bd232069d"
+      }
+    },
+    "sap.ui": {
+      "technology": "UI5",
+      "icons": {
+        "icon": "",
+        "favIcon": "",
+        "phone": "",
+        "phone@2": "",
+        "tablet": "",
+        "tablet@2": ""
+      },
+      "deviceTypes": {
+        "desktop": true,
+        "tablet": true,
+        "phone": true
+      }
+    },
+    "sap.ui5": {
+      "flexEnabled": true,
+      "dependencies": {
+        "minUI5Version": "1.131.1",
+        "libs": {
+          "sap.m": {},
+          "sap.ui.core": {},
+          "sap.f": {}
+        }
+      },
+      "contentDensities": {
+        "compact": true,
+        "cozy": true
+      },
+      "models": {
+        "i18n": {
+          "type": "sap.ui.model.resource.ResourceModel",
+          "settings": {
+            "bundleName": "logaligroup.proyecto1.i18n.i18n"
+          }
+        },
+        "layoutModel": {
+        "type": "sap.ui.model.json.JSONModel",
+        "uri": "localService/layoutMP.json"  
+    }
+      },
+      "resources": {
+        "css": [
+          {
+            "uri": "css/style.css"
+          }
+        ]
+      },
+      "routing": {
+        "config": {
+          "routerClass": "sap.m.routing.Router",
+          "viewType": "XML",
+          "viewPath": "logaligroup.proyecto1.view",
+          "controlId": "idMainApp",
+          "controlAggregation": "pages",
+          "async": true
+        },
+        "routes": [
+          {
+            "name": "main",
+            "pattern": "",
+            "target": "MainTarget"
+          },
+          {
+            "name": "viewList",
+            "pattern": "viewList",
+            "target": "ViewListTarget"
+          },
+          {
+            "name": "viewFacturaciones",
+            "pattern": "viewFacturaciones",
+            "target": "ViewFacturacionesTarget"
+          },
+          {
+            "name": "viewPT",
+            "pattern": "viewPT",
+            "target": "ViewPTTarget"
+          },
+          {
+            "name": "buttonTheme",
+            "pattern": "buttonTheme",
+            "target": "ButtonTheme"
+          }
+        ],
+        "targets": {
+          "MainTarget": {
+            "viewName": "Main",
+            "viewId": "idMainView",
+            "viewLevel": 0
+          },
+          "ViewListTarget": {
+            "viewName": "ViewList",
+            "viewId": "idViewList",
+            "viewLevel": 1
+          },
+          "ViewFacturacionesTarget": {
+            "viewName": "ViewFacturaciones",
+            "viewId": "idViewFacturaciones",
+            "viewLevel": 1
+          },
+          "ViewPTTarget": {
+            "viewName": "ViewPT",
+            "viewId": "idViewPT",
+            "viewLevel": 1
+          },
+          "ButtonTheme": {
+            "viewName": "ButtonTheme",
+            "viewId": "idButtonTheme",
+            "viewLevel": 1
+          }
+        }
+      },
+      "rootView": {
+        "viewName": "logaligroup.proyecto1.view.Main",
+        "type": "XML",
+        "id": "idMainApp"
+      }
+    }
+  }
+  
